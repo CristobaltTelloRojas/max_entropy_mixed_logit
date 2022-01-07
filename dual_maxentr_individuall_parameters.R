@@ -1991,37 +1991,3 @@ p.final[i,]<- p[i,]/p.norm[i]
 }
 data.merge<-merge(df.sol,dframe)
 
- 
-#------------------------infometric package-------------------------------
-
-hist(sol.1[5:(nobs-13)], main= "Alternativa auto Bus - Metro",freq =TRUE,xlab = "efecto marginal" ,col  = "purple")
-
-distribucion <- fitdist(as.vector(util), distr = "norm")
-summary(distribucion)
-plot(distribucion)
-
-histDist(util, family=NO, nbins=30, line.col="red", line.wd=1)
-
-
-util<-matrix(ncol = nalt , nrow = nobs)
-for(i in 1:nobs){
-  for(j in 1:nalt){
-    
-    util[i,j]<-(- util.lambda[i,j] - util.beta[i,j]*DISP[i,j] - rho[i])
-    
-    
-  }
-}
-hist(util[,7], main= "Alternativa auto Bus - Metro",freq =TRUE,xlab = "efecto marginal" ,col  = "purple")
-
-curve(dnorm(util), col = 2, lty = 2, lwd = 2, add = TRUE)
-
-hist(util.2[,3],main = "Alternativa auto Bus - Metro",freq =FALSE ,xlab = "efecto marginal" ,col  = "purple")
-
-hist(p.j,main = "Alternativa auto Bus - Metro",freq =FALSE ,xlab = "efecto marginal" ,col  = "purple")
-
-
-
-X2 <- runif(30)
-X2 <- array(X2, c(1376, 9, 13))
-gme_mixed(y.dual,covariates[,,5],X2,optim_method = "BFGS")
